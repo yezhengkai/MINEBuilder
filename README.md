@@ -23,6 +23,8 @@ We may need to add this line
 ```julia
 Sys.iswindows() && chmod(artifact_path(tree_hash), 0o755; recursive=true)
 ```
+#### References
+- https://github.com/JuliaLang/julia/issues/38993
 
 ## Problems compiling .so files for linux
 ```bash
@@ -33,11 +35,6 @@ patchelf: getting info about 'lib\libmine.so': No such file or directory
 ┌ Warning: Unable to set SONAME on lib\libmine.so
 └ @ BinaryBuilder.Auditor C:\Users\kai\.julia\packages\BinaryBuilder\0CUml\src\auditor\soname_matching.jl:83
 ```
-
-#### References
-- https://github.com/JuliaLang/julia/issues/38993
-
-
 
 
 ## References
