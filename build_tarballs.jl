@@ -18,19 +18,20 @@ cd ${WORKSPACE}/srcdir/minepy*/libmine
 mkdir -p ${libdir}
 
 # Ref: https://discourse.julialang.org/t/binarybuilder-jl-mingw-problem/73815/7
-CFLAGS="-DWIN32 -DWIN_DLL -DENAGLO -DENAGAL -DENAQZS -DENACMP -DENAIRN -DTRACE -DNFREQ=5 -DNEXOBS=3 -DSVR_REUSEADDR -I. -fPIC -Wall -O3 -ansi -pedantic -Wno-unused-but-set-variable -g"
-LDFLAGS="-lwinmm -lws2_32 -lrtm -lrtutils -lm -lpthread -shared -Wl,-no-undefined"
+#CFLAGS="-DWIN32 -DWIN_DLL -DENAGLO -DENAGAL -DENAQZS -DENACMP -DENAIRN -DTRACE -DNFREQ=5 -DNEXOBS=3 -DSVR_REUSEADDR -I. -fPIC -Wall -O3 -ansi -pedantic -Wno-unused-but-set-variable -g"
+#LDFLAGS="-lwinmm -lws2_32 -lrtm -lrtutils -lm -lpthread -shared -Wl,-no-undefined"
+CFLAGS="-fPIC"
+LDFLAGS="-shared"
 
-${CC} ${CFLAG} -o ${libdir}/libmine.${dlext} mine.c ${LDFLAGS}
+${CC} ${CFLAGS} ${LDFLAGS} -o ${libdir}/libmine.${dlext} mine.c
 
 install_license ../gpl-3.0.txt
 """
 
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
-# TODO: Support linux
 platforms = [
-    # Platform("x86_64", "linux"; libc = "glibc"),
+    Platform("x86_64", "linux"; libc = "glibc"),
     Platform("x86_64", "windows")
 ]
 
